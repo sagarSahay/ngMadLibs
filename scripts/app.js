@@ -9,5 +9,19 @@ angular.module('madLibsApp',[])
 							  tediousTask:"",
 							  uselessSkill:"",
 							  adjective:"",
-							  gender:"" }
+							  gender:"" };
+			$scope.changeView=false;
+
+			$scope.submit=function(){
+				$scope.changeView=true;
+			};
+            
+
+			$scope.reset=function(form){
+				if (form) {
+			      form.$setPristine();
+			      form.$setUntouched();
+			      $scope.ngMadLibs = {};
+			    }
+			};
 		});

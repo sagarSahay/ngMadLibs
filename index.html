@@ -2,12 +2,13 @@
 <html ng-app="madLibsApp" lang="en" >
 <head >
     <meta charset="UTF-8">
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.5/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
 <script type="text/javascript" src="./scripts/app.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 </head>
-<body >
-<div class="container" ng-controller="dataController" > 
+<body ng-controller="dataController"  >
+<form name="myForm" ng-submit="submit()">
+<div class="container" > 
 	<div style="row">
 		<div class="col-md-4">
 			<img src="./images/mad-lib-happy-face.png" alt="Smiley face">
@@ -17,7 +18,7 @@
 			<h1><font size="18">Automate this!</font></h1>
 		</div>
 	</div>
-
+    <div ng-show="changeView === false">
 	<div class="row">
 		<h2>Provide the following words:</h2>
 	</div>
@@ -27,60 +28,40 @@
 	</div>
 
 	<div class="row">
-		<input class="col-md-4" type="text" placeholder="male name" ng-model="ngMadLibs.maleName" />
-		<input type="text" class="col-md-4" placeholder="Dirty task" ng-model="ngMadLibs.dirtyTask" />
-		 <input type="text" class="col-md-4" placeholder="obnoxious celebrity" ng-model="ngMadLibs.obnoxiousCelebrity" />
+		<input name="maleName" class="col-md-4" type="text" placeholder="male name" ng-model="ngMadLibs.maleName" required />
+		<input name="dirtyTask" type="text" class="col-md-4" placeholder="Dirty task" ng-model="ngMadLibs.dirtyTask" required />
+		 <input name="obnoxiousCelebrity" type="text" class="col-md-4" placeholder="obnoxious celebrity" ng-model="ngMadLibs.obnoxiousCelebrity" required />
 	</div>
 	<div class="row">
-		<input class="col-md-4" type="text" placeholder="Job title" ng-model="ngMadLibs.jobTitle" />
-		<input type="text" class="col-md-4" placeholder="celebrity" ng-model="ngMadLibs.celebrity" />
-		 <input type="text" class="col-md-4" placeholder="Huge number" ng-model="ngMadLibs.hugeNumber" />
+		<input name="jobTitle" class="col-md-4" type="text" placeholder="Job title" ng-model="ngMadLibs.jobTitle" required />
+		<input name="celebrity" type="text" class="col-md-4" placeholder="celebrity" ng-model="ngMadLibs.celebrity" required />
+		 <input name="hugeNumber" type="number" class="col-md-4" placeholder="Huge number" ng-model="ngMadLibs.hugeNumber" required />
+		 <span class="error" ng-show="myForm.input.$error.hugeNumber">
+   			 Not valid number!
+   		 </span>
 	</div>
 	<div class="row">
-		<input class="col-md-4" type="text" placeholder="Tedious task" ng-model="ngMadLibs.tediousTask" />
-		<input type="text" class="col-md-4" placeholder="Useless skill" ng-model="ngMadLibs.uselessSkill" />
-		 <input type="text" class="col-md-4" placeholder="Adjective" ng-model="ngMadLibs.adjective" />
-	</div>
-	<div class="row">
-		<input type="checkbox"
-       ng-model="ngMadLibs.gender">IsMale
+		<input name="tediousTask" class="col-md-4" type="text" placeholder="Tedious task" ng-model="ngMadLibs.tediousTask" required />
+		<input name="uselessSkill" type="text" class="col-md-4" placeholder="Useless skill" ng-model="ngMadLibs.uselessSkill"  required />
+		 <input name="adjective" type="text" class="col-md-4" placeholder="Adjective" ng-model="ngMadLibs.adjective" required />
 	</div>
 
-	<div class="row">
-		<p><u ng-if="ngMadLibs.maleName==''"> <u ng-non-bindable>{{male name}}</u></u><u ng-if="ngMadLibs.maleName!=''">{{ngMadLibs.maleName}}</u> was a <u ng-if="ngMadLibs.jobTitle==''"><u ng-non-bindable>{{job title}}</u></u><u ng-if="ngMadLibs.jobTitle!=''">{{ngMadLibs.jobTitle}}</u>  who loved technology. Although <span ng-switch="ngMadLibs.gender">
-			<span ng-switch-when='true' >he</span>
-			<span ng-switch-when='false' >she</span>
-			<span ng-switch-default >she</span>
-		</span>  loved parts of 
-		<span ng-switch="ngMadLibs.gender">
-			<span ng-switch-when='true' >his</span>
-			<span ng-switch-when='false' >her</span>
-			<span ng-switch-default >her</span>
-		</span>  job, <span ng-switch="ngMadLibs.gender">
-			<span ng-switch-when='true' >he</span>
-			<span ng-switch-when='false' >she</span>
-			<span ng-switch-default >she</span>
-		</span>  absolutely hated <u ng-if="ngMadLibs.tediousTask==''"><u ng-non-bindable>{{tedious task}}</u></u><u ng-if="ngMadLibs.tediousTask!=''">{{ngMadLibs.tediousTask}}</u>  and <u ng-if="ngMadLibs.dirtyTask==''"><u ng-non-bindable>{{dirty task}}</u></u><u ng-if="ngMadLibs.dirtyTask!=''">{{ngMadLibs.dirtyTask}}</u>. So, <u ng-if="ngMadLibs.maleName==''"><u ng-non-bindable>{{male name}}</u></u><u ng-if="ngMadLibs.maleName!=''">{{ngMadLibs.maleName}}</u> met with <span ng-switch="ngMadLibs.gender">
-			<span ng-switch-when='true' >him</span>
-			<span ng-switch-when='false' >her</span>
-			<span ng-switch-default >her</span>
-		</span>  mentor <u ng-if="ngMadLibs.celebrity==''"><u ng-non-bindable>{{celebrity}}</u></u><u ng-if="ngMadLibs.celebrity!=''">{{ngMadLibs.celebrity}}</u>  who told 
-		<span ng-switch="ngMadLibs.gender">
-			<span ng-switch-when='true' >him</span>
-			<span ng-switch-when='false' >her</span>
-			<span ng-switch-default >her</span>
-		</span> to learn how to <u ng-if="ngMadLibs.uselessSkill==''"><u ng-non-bindable>{{useless skill}}</u></u><u ng-if="ngMadLibs.uselessSkill!=''">{{uselessSkill}}</u> with Thinkful. Thinkful didn't offer a course on <u ng-if="ngMadLibs.uselessSkill==''"><u ng-non-bindable>{{useless skill}}</u></u><u ng-if="ngMadLibs.uselessSkill!=''">{{uselessSkill}}</u>  so <span ng-switch="ngMadLibs.gender">
-			<span ng-switch-when='true' >he</span>
-			<span ng-switch-when='false' >she</span>
-			<span ng-switch-default >she</span>
-		</span>  studied programming instead.</p>
+   <hr style="margin: 10px 5px;">
 
-		<p>What a great decision! With <span ng-switch="ngMadLibs.gender">
-			<span ng-switch-when='true' >him</span>
-			<span ng-switch-when='false' >her</span>
-			<span ng-switch-default >her</span>
-		</span>  new skills, <u ng-if="ngMadLibs.maleName==''"><u ng-non-bindable>{{male name}}</u></u><u ng-if="ngMadLibs.maleName!=''">{{maleName}}</u> built a(n) <u ng-if="ngMadLibs.adjective==''"><u ng-non-bindable>{{adjective}}</u></u><u ng-if="ngMadLibs.adjective!=''">{{adjective}}</u> robot named  <u ng-if="ngMadLibs.obnoxiousCelebrity==''"><u ng-non-bindable>{{obnoxious celebrity}}</u> </u><u ng-if="ngMadLibs.obnoxiousCelebrity!=''">{{obnoxiousCelebrity}}</u> that not only loved <u ng-if="ngMadLibs.dirtyTask==''"><u ng-non-bindable>{{dirty task}}</u></u><u ng-if="ngMadLibs.dirtyTask!=''">{{dirtyTask}}</u> but did it <u ng-if="ngMadLibs.hugeNumber==''"><u ng-non-bindable>{{huge number}}</u></u><u ng-if="ngMadLibs.hugeNumber!=''">{{hugeNumber}}</u> faster.</p>
+   <div class="row">
+   		<input class="pull-right" type="submit" id="submit" value="Generate my Mad Lib" />
+   </div>
+   </div>
+     <div ng-show="changeView === true">
+	<div  class="row">
+		<p><u ng-if="ngMadLibs.maleName==''"> <u ng-non-bindable>{{male name}}</u></u><u ng-if="ngMadLibs.maleName!=''">{{ngMadLibs.maleName}}</u> was a <u ng-if="ngMadLibs.jobTitle==''"><u ng-non-bindable>{{job title}}</u></u><u ng-if="ngMadLibs.jobTitle!=''">{{ngMadLibs.jobTitle}}</u>  who loved technology. Although he loved parts of his job, he absolutely hated <u ng-if="ngMadLibs.tediousTask==''"><u ng-non-bindable>{{tedious task}}</u></u><u ng-if="ngMadLibs.tediousTask!=''">{{ngMadLibs.tediousTask}}</u>  and <u ng-if="ngMadLibs.dirtyTask==''"><u ng-non-bindable>{{dirty task}}</u></u><u ng-if="ngMadLibs.dirtyTask!=''">{{ngMadLibs.dirtyTask}}</u>. So, <u ng-if="ngMadLibs.maleName==''"><u ng-non-bindable>{{male name}}</u></u><u ng-if="ngMadLibs.maleName!=''">{{ngMadLibs.maleName}}</u> met with his mentor <u ng-if="ngMadLibs.celebrity==''"><u ng-non-bindable>{{celebrity}}</u></u><u ng-if="ngMadLibs.celebrity!=''">{{ngMadLibs.celebrity}}</u>  who told him to learn how to <u ng-if="ngMadLibs.uselessSkill==''"><u ng-non-bindable>{{useless skill}}</u></u><u ng-if="ngMadLibs.uselessSkill!=''">{{uselessSkill}}</u> with Thinkful. Thinkful didn't offer a course on <u ng-if="ngMadLibs.uselessSkill==''"><u ng-non-bindable>{{useless skill}}</u></u><u ng-if="ngMadLibs.uselessSkill!=''">{{ngMadLibs.uselessSkill}}</u>  so he studied programming instead.</p>
+
+		<p>What a great decision! With his new skills, <u ng-if="ngMadLibs.maleName==''"><u ng-non-bindable>{{male name}}</u></u><u ng-if="ngMadLibs.maleName!=''">{{ngMadLibs.maleName}}</u> built a(n) <u ng-if="ngMadLibs.adjective==''"><u ng-non-bindable>{{adjective}}</u></u><u ng-if="ngMadLibs.adjective!=''">{{ngMadLibs.adjective}}</u> robot named  <u ng-if="ngMadLibs.obnoxiousCelebrity==''"><u ng-non-bindable>{{obnoxious celebrity}}</u> </u><u ng-if="ngMadLibs.obnoxiousCelebrity!=''">{{ngMadLibs.obnoxiousCelebrity}}</u> that not only loved <u ng-if="ngMadLibs.dirtyTask==''"><u ng-non-bindable>{{dirty task}}</u></u><u ng-if="ngMadLibs.dirtyTask!=''">{{ngMadLibs.dirtyTask}}</u> but did it <u ng-if="ngMadLibs.hugeNumber==''"><u ng-non-bindable>{{huge number}}</u></u><u ng-if="ngMadLibs.hugeNumber!=''">{{ngMadLibs.hugeNumber}}</u> times faster.</p>
 	</div>
-
+	 <div class="row">
+   		<button  class="pull-right " type="button" ng-click="changeView=false;reset(myForm)">Reset </button>
+   </div>
+	</div>
+	</form>
 </body>
 </html>
