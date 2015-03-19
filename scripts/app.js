@@ -1,4 +1,4 @@
-angular.module('madLibsApp',[])
+angular.module('madLibsApp',['ngAnimate'])
 		.controller('dataController',function($scope){
 			$scope.ngMadLibs={maleName:'',
 							  dirtyTask:"",
